@@ -7,8 +7,7 @@
      fxLayoutGap.xs="0">
 
   <div fxFlex="40">
-    <div fxFlex *ngIf="dish">
-      <mat-card>
+      <mat-card *ngIf="dish">
         <mat-card-header>
           <mat-card-title>
             <h3>{{dish.name | uppercase}}</h3>
@@ -24,12 +23,11 @@
           <button mat-button>SHARE</button>
         </mat-card-actions>
       </mat-card>
-    </div>
   </div>
 
-  <div fxFlex="40">
+  <div fxFlex="40" *ngIf="dish">
    <h1>Comments</h1>
-    <mat-list rowHeight="500px" *ngIf="dish">
+    <mat-list>
       <mat-list-item *ngFor="let comment of dish.comments">
           <p mat-line>{{comment.comment}}</p>
           <p mat-line>{{comment.rating}} stars</p>
