@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 
 @Component({
@@ -10,8 +10,9 @@ import {MatDialogRef} from '@angular/material';
 export class LoginComponent implements OnInit {
 
   user = {username: '', password: '', remember: false};
+  constructor(public dialogRef: MatDialogRef<LoginComponent>) {
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>) { }
+  }
 
   ngOnInit() {
   }
