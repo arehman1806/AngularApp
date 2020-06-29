@@ -1,7 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ContactType, Feedback} from '../shared/feedback';
-import {expand, flyInOut} from '../animations/app.animations';
+import {expand, flyInOut, visibility} from '../animations/app.animations';
+import {FeedbackService} from '../services/feedback.service';
+
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +16,8 @@ import {expand, flyInOut} from '../animations/app.animations';
   },
   animations: [
     flyInOut(),
-    expand()
+    expand(),
+    visibility()
   ]
 })
 
@@ -25,6 +28,7 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  visibility = 'shown';
 
   formErrors = {
     'firstname': '',
@@ -56,8 +60,15 @@ export class ContactComponent implements OnInit {
       'minlength':     'Email must be at least ' + this.emailcharsize + ' characters long'
     },
   };
+  errMsg: any;
+  submittedForm: Feedback;
+  submitting = false;
+  resultDisplay = false;
+  private x: any;
+  formDisplay = true;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private feedbackserice: FeedbackService) {
     this.createForm();
   }
 
@@ -83,8 +94,20 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitting = true;
+    this.visibility = 'hidden';
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
+    this.feedbackserice.submitFeedback(this.feedback)
+      .subscribe(succ => {this.submittedForm = succ;
+      this.submitting = false;
+      this.resultDisplay = true;
+        setTimeout(() => {this.resultDisplay = false; this.visibility = 'shown'; }, 5000); },
+
+        error => {this.errMsg = error;
+        this.submitting = false;
+        this.formDisplay = true; });
+
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',

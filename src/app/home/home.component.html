@@ -12,35 +12,35 @@
         <h3>{{dish.name | uppercase}}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="{{baseURL + dish.image}}" alt={{dish.name}}>
+    <img mat-card-image src="{{baseURL + dish.image}}" alt={{disherrMess}}>
     <mat-card-content>
       <p>{{dish.description}}
       </p>
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="promotion" fxFlex="30">
+  <mat-card *ngIf="promotion" fxFlex="30" [@expand]>
     <mat-card-header>
       <div mat-card-avatar></div>
       <mat-card-title>
         <h3>{{promotion.name | uppercase}}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src={{promotion.image}} alt={{promotion.name}}>
+    <img mat-card-image src="{{baseURL + promotion.image}}" alt={{promotionerrMess}}>
     <mat-card-content>
       <p>{{promotion.description}}
       </p>
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="leader" fxFlex="30">
+  <mat-card *ngIf="leader || leadererrMess" fxFlex="30">
     <mat-card-header>
       <div mat-card-avatar></div>
       <mat-card-title>
         <h3>{{leader.name | uppercase}}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src={{leader.image}} alt={{leader.name}}>
+    <img mat-card-image src="{{baseURL + leader.image}}" alt={{leadererrMess}}>
     <mat-card-content>
       <p>{{leader.description}}
       </p>

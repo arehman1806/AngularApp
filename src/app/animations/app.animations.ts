@@ -7,7 +7,7 @@ export function visibility() {
       opacity: 1
     })),
     state('hidden', style({
-      transform: 'scale(0.5)',
+      transform: 'scale(0)',
       opacity: 0
     })),
     transition('* => *', animate('0.5s ease-in-out'))
