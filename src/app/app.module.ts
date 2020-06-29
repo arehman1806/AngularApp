@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {baseURL} from './shared/baseurl';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {baseURL} from './shared/baseurl';
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
